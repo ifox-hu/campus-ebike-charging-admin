@@ -1,4 +1,5 @@
 <script setup>
+import brandMark from '../assets/brand-mark.svg'
 import {onMounted,onBeforeUnmount,ref} from 'vue'
 import UiIcon from './UiIcon.vue'
 import './energy-login.css'
@@ -15,7 +16,7 @@ onBeforeUnmount(()=>{active=false;cleanup?.()})
 <template>
  <main class="energy-login" aria-label="电动自行车智慧充电管理系统登录">
   <div class="ec-atmosphere" aria-hidden="true"></div>
-  <header class="ec-nav"><div class="ec-brand"><span class="ec-mark"><UiIcon name="battery"/></span><div><b>智慧充电</b><small>SMART E-BIKE CHARGING</small></div></div><div class="ec-nav-right"><span><b class="ec-dot"></b>智慧充电管理平台</span><span>简体中文</span></div></header>
+  <header class="ec-nav"><div class="ec-brand"><img class="ec-mark" :src="brandMark" alt=""/><div><b>智慧充电</b><small>SMART E-BIKE CHARGING</small></div></div><div class="ec-nav-right"><span><b class="ec-dot"></b>智慧充电管理平台</span><span>简体中文</span></div></header>
   <section class="ec-hero"><div class="ec-eyebrow">BEYOND ENERGY. INTO THE FUTURE.</div><h1>能量无界<span>智联未来</span></h1><p>让数据流动，让连接发生。<br>以智慧，驱动每一种可能。</p></section>
   <span class="ec-ghost-word" aria-hidden="true">ENERGY</span>
   <div ref="stage" class="ec-stage"><div class="ec-fallback" aria-hidden="true"></div><button ref="hit" type="button" class="ec-core-hit" aria-label="拖拽旋转能量装置，滚轮或双指缩放，点击触发能量反馈"></button></div>

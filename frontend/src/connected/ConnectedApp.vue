@@ -1,4 +1,5 @@
 <script setup>
+import brandMark from '../assets/brand-mark.svg'
 import {computed,onBeforeUnmount,reactive,ref,watch} from 'vue'
 import UiIcon from '../components/UiIcon.vue'
 import EnergyLogin from '../components/EnergyLogin.vue'
@@ -49,7 +50,7 @@ onBeforeUnmount(()=>{clearInterval(timer);client.logout()})
 <template>
  <EnergyLogin v-if="!user" v-model:username="username" v-model:password="password" title="业务后端管理登录" subtitle="登录后管理站点、设备与独立插座" :allow-remember="false" :busy="loginBusy" :error="loginError" @submit="login"><template #help>使用业务后端的管理员或运营员账号。刷新后需重新登录。</template></EnergyLogin>
  <div v-else class="platform connected-platform" :class="{'sidebar-collapsed':collapsed}">
-  <aside class="sidebar"><a class="brand" href="#" @click.prevent="nav('dashboard')"><span class="auth-logo">ϟ</span><span class="brand-name">电动自行车<br/>智慧充电管理系统</span></a><nav class="navigation" aria-label="主导航"><div v-for="item in navigation" :key="item.id" class="nav-group"><button class="nav-item" :class="{active:page===item.id}" @click="nav(item.id)"><UiIcon :name="item.icon"/><span>{{item.label}}</span></button></div></nav></aside>
+  <aside class="sidebar"><a class="brand" href="#" @click.prevent="nav('dashboard')"><img class="brand-logo" :src="brandMark" alt=""/><span class="brand-name">电动自行车<br/>智慧充电管理系统</span></a><nav class="navigation" aria-label="主导航"><div v-for="item in navigation" :key="item.id" class="nav-group"><button class="nav-item" :class="{active:page===item.id}" @click="nav(item.id)"><UiIcon :name="item.icon"/><span>{{item.label}}</span></button></div></nav></aside>
   <header class="topbar"><button class="icon-button fold-button" aria-label="切换导航" @click="collapsed=!collapsed"><UiIcon name="menu"/></button><div class="breadcrumbs">统一业务后端 / <strong>{{title}}</strong></div><div class="topbar-tools connected-tools"><span class="preview-mode-chip">后端联调版</span><button v-if="canWrite" class="text-button" @click="dialog={type:'audit'};loadAudit()">操作日志</button><span>{{user.displayName||user.username}}</span><button class="text-button" @click="logout()">退出</button></div></header>
   <main class="main-content"><p v-if="!canWrite" class="remote-message">运营员账号：基础配置只读，可记录告警并处理分派给本人的报修。</p><div class="tab-strip"><button class="active-tab">{{title}}</button><span class="tab-mode-note">{{loadedAt?'最近同步 '+loadedAt:'尚未读取数据'}}</span><button class="text-button remote-refresh" :disabled="busy||actionBusy" @click="page==='reports'?repairsPanel?.reload():refresh()">{{busy?'读取中…':'刷新服务端数据'}}</button></div>
    <p v-if="error" class="remote-error" role="alert">{{error}}</p><p v-if="message" class="remote-message" role="status">{{message}}</p>
