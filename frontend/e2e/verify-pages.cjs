@@ -72,7 +72,7 @@ async function main(){
   await page.reload();await page.getByRole('heading',{name:'在线演示登录',exact:true}).waitFor()
   assert.equal(await page.locator('input[autocomplete=username]').inputValue(),'demo')
   assert.equal(await page.locator('input[autocomplete=current-password]').inputValue(),'')
-  assert.ok(await page.evaluate(()=>!JSON.stringify({...localStorage,...sessionStorage}).includes('Demo@123456')))
+  assert.ok(await page.evaluate(()=>!JSON.stringify({...localStorage,...sessionStorage}).includes('demo123')))
   await page.getByRole('button',{name:'填入演示账号',exact:true}).click()
   await page.locator('.login-submit').click()
   await page.locator('.platform').waitFor()

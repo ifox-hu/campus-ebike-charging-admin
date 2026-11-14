@@ -8,7 +8,7 @@ async function main(){
   admin.on('pageerror',e=>errors.push(e.message));
   await admin.goto((process.env.SCENARIO_ADMIN_URL||'http://127.0.0.1:5207')+'/#/dashboard');
   await admin.locator('input[autocomplete=username]').fill('demo');
-  await admin.locator('input[autocomplete=current-password]').fill('Demo@123456');
+  await admin.locator('input[autocomplete=current-password]').fill('demo123');
   await admin.locator('.login-submit').click();await admin.locator('.station-map-card').waitFor();
   const url=await admin.evaluate(()=>performance.getEntriesByType('resource').map(e=>e.name).find(s=>new URL(s).pathname==='/src/domain/store.js'));
   const counts=await admin.evaluate(async url=>{const {db}=await import(url);return {stations:db.stations.length,devices:db.devices.length,sockets:db.sockets.length}},url);

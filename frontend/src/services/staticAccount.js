@@ -2,7 +2,7 @@
 // Demo credentials are public UI simulation only, never a security boundary.
 // No password is persisted or sent to a server; settings belong to this browser.
 import {validateAvatar} from './avatar.js'
-export const STATIC_DEMO_ACCOUNT=Object.freeze({username:'demo',password:'Demo@123456'})
+export const STATIC_DEMO_ACCOUNT=Object.freeze({username:'demo',password:'demo123'})
 const key='campus-charging-pages-settings-v1',sessionKey='campus-charging-pages-session-v1'
 export function createStaticAccountRequest({storage,sessionStorage,now=()=>new Date().toISOString()}){
  const initial=()=>({profile:{id:'public-demo',username:'demo',displayName:'演示管理员',role:'ADMIN',avatar:'',email:'',phone:'',bio:'公开静态演示，无真实账号权限。',preferences:{fontSize:'normal',density:'comfortable'},updatedAt:now()},readKeys:[]})

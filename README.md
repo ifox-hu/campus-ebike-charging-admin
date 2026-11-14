@@ -11,7 +11,7 @@
 
 **[在线演示](https://ifox-hu.github.io/campus-ebike-charging/) · [部署说明](docs/deployment.md) · [问题反馈](https://github.com/ifox-hu/campus-ebike-charging/issues)**
 
-> 在线页面是公开静态演示，演示账号 `demo`、密码 `Demo@123456`（仅模拟登录流程，并非真实身份认证）；业务、资料、通知与设置只保存在访问者自己的浏览器，不控制真实充电设备，不发生真实付款。
+> 在线页面是公开静态演示，演示账号 `demo`、密码 `demo123`（仅模拟登录流程，并非真实身份认证）；业务、资料、通知与设置只保存在访问者自己的浏览器，不控制真实充电设备，不发生真实付款。
 >
 > 本轮最终联机验收组合（2026-11-14）：本仓库 `frontend/` 的 connected 管理端、本仓库 `mobile-client/` 用户端，以及配套 `ev-charging-platform/backend/`。两端共用 `/api` 业务接口。新订单仅核算电费，历史账单不重算。详见 [验收矩阵](docs/graduation-acceptance.md)、[演示脚本](docs/graduation-demo.md) 与 [最终架构](docs/graduation-architecture.md)。
 >
@@ -36,7 +36,7 @@
 
 ### 管理端
 
-演示账号：**`demo` / `Demo@123456`**。支持填入演示账号、显示密码、记住账号及退出登录。
+演示账号：**`demo` / `demo123`**。支持填入演示账号、显示密码、记住账号及退出登录。
 
 管理端与 Pages 共用能量核心登录界面：保留原版三维球体、机械轨道与粒子流，可拖拽旋转、滚轮或双指缩放、点击触发脉冲。三维资源随构建打包，登录后释放场景；不支持 WebGL 时显示静态视觉，仍可登录。
 
@@ -252,7 +252,7 @@ npm ci
 npm run dev:pages
 ```
 
-默认端口 5207，演示账号 `demo` / `Demo@123456`。此入口无需启动 Java 或 MySQL，不能用它验证两端共享订单。
+默认端口 5207，演示账号 `demo` / `demo123`。此入口无需启动 Java 或 MySQL，不能用它验证两端共享订单。
 
 ### H5 与微信小程序
 
