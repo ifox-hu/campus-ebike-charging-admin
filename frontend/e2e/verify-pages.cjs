@@ -38,13 +38,13 @@ async function main(){
   if(expectAmap){
    await page.locator('.map-runtime.ready').waitFor({timeout:35000})
    assert.equal(await page.locator('.map-diagram').count(),0,'在线演示必须显示真实高德底图')
-   assert.equal(await page.locator('.amap-stage .station-marker').count(),5)
+   assert.equal(await page.locator('.amap-stage .station-marker').count(),16)
    assert.equal(await page.evaluate(()=>!!window.AMap?.Map),true)
    await (await mapTile).finished()
    await page.waitForTimeout(800)
   }else{
    await page.locator('.map-diagram').waitFor()
-   assert.equal(await page.locator('.map-diagram .station-marker').count(),5)
+   assert.equal(await page.locator('.map-diagram .station-marker').count(),16)
   }
   await page.screenshot({path:path.join(screenshots,'pages-dashboard.png')})
   await page.locator('.navigation .nav-item').filter({hasText:'设备与插座'}).click()
@@ -76,7 +76,7 @@ async function main(){
   await page.getByRole('button',{name:'填入演示账号',exact:true}).click()
   await page.locator('.login-submit').click()
   await page.locator('.platform').waitFor()
-  await page.locator('.navigation .nav-item').filter({hasText:'数据统计'}).click()
+  await page.locator('.navigation .nav-item').filter({hasText:'运营概览'}).click()
   await page.locator('.metric-card').first().waitFor()
   assert.deepEqual(apiRequests,[])
   assert.deepEqual(failedAssets,[])

@@ -1,6 +1,7 @@
 <script setup>
 import {computed,onBeforeUnmount,reactive,ref,watch} from 'vue'
 import UiIcon from '../components/UiIcon.vue'
+import EnergyLogin from '../components/EnergyLogin.vue'
 import RepairsPanel from './RepairsPanel.vue'
 import StatusTag from '../components/StatusTag.vue'
 import {navigation} from '../data.js'
@@ -46,7 +47,7 @@ const selectedSockets=computed(()=>dialog.value?.type==='device'?data.sockets.fi
 onBeforeUnmount(()=>{clearInterval(timer);client.logout()})
 </script>
 <template>
- <main v-if="!user" class="auth-shell connected-login"><div class="auth-brand"><span class="auth-logo">ϟ</span>电动自行车智慧充电管理系统</div><section class="login-card"><div class="login-accent"></div><header><h1>业务后端管理登录</h1><p>后端联调版 · 使用统一 Spring Boot 接口</p></header><p v-if="loginError" class="form-error" role="alert">{{loginError}}</p><form @submit.prevent="login"><label>业务后端账号<input v-model="username" required autocomplete="username" maxlength="64"/></label><label>密码<input v-model="password" type="password" required autocomplete="current-password" maxlength="72"/></label><button class="login-submit" :disabled="loginBusy">{{loginBusy?'正在连接…':'登 录'}}</button></form><div class="login-help">使用现有业务后端的 ADMIN / OPERATOR 账号。此账号与 5195 本机模拟版账号不同；不内置密码，刷新后需重新登录。<br/>管理员可维护配置；运营员可查询和处理本人负责的报修。</div></section></main>
+ <EnergyLogin v-if="!user" v-model:username="username" v-model:password="password" title="业务后端管理登录" subtitle="登录后管理站点、设备与独立插座" :allow-remember="false" :busy="loginBusy" :error="loginError" @submit="login"><template #help>使用业务后端的管理员或运营员账号。刷新后需重新登录。</template></EnergyLogin>
  <div v-else class="platform connected-platform" :class="{'sidebar-collapsed':collapsed}">
   <aside class="sidebar"><a class="brand" href="#" @click.prevent="nav('dashboard')"><span class="auth-logo">ϟ</span><span class="brand-name">电动自行车<br/>智慧充电管理系统</span></a><nav class="navigation" aria-label="主导航"><div v-for="item in navigation" :key="item.id" class="nav-group"><button class="nav-item" :class="{active:page===item.id}" @click="nav(item.id)"><UiIcon :name="item.icon"/><span>{{item.label}}</span></button></div></nav></aside>
   <header class="topbar"><button class="icon-button fold-button" aria-label="切换导航" @click="collapsed=!collapsed"><UiIcon name="menu"/></button><div class="breadcrumbs">统一业务后端 / <strong>{{title}}</strong></div><div class="topbar-tools connected-tools"><span class="preview-mode-chip">后端联调版</span><button v-if="canWrite" class="text-button" @click="dialog={type:'audit'};loadAudit()">操作日志</button><span>{{user.displayName||user.username}}</span><button class="text-button" @click="logout()">退出</button></div></header>

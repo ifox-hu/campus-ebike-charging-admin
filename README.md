@@ -38,6 +38,8 @@
 
 演示账号：**`demo` / `Demo@123456`**。支持填入演示账号、显示密码、记住账号及退出登录。
 
+管理端与 Pages 共用能量核心登录界面：保留原版三维球体、机械轨道与粒子流，可拖拽旋转、滚轮或双指缩放、点击触发脉冲。三维资源随构建打包，登录后释放场景；不支持 WebGL 时显示静态视觉，仍可登录。
+
 | 在线演示登录 | 运营数据统计与高德地图 |
 | --- | --- |
 | ![管理端登录](docs/screenshots/showcase-admin-login.png) | ![运营数据统计与高德地图](docs/screenshots/showcase-admin-dashboard-amap.png) |

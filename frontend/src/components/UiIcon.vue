@@ -1,6 +1,9 @@
 <script setup>
 defineProps({ name: String, size: { type: [Number, String], default: '1.15em' } })
 const paths = {
+  lock:'M6 10h12v12H6zM8 10V6a4 4 0 0 1 8 0v4M12 15v3',
+  eye:'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zm7 0a3 3 0 1 0 6 0 3 3 0 0 0-6 0',
+  eyeOff:'m3 3 18 18M10 5h2c6 0 10 7 10 7a20 20 0 0 1-4 4M6 6a24 24 0 0 0-4 6s4 7 10 7a15 15 0 0 0 5-1M10 10a3 3 0 0 0 4 4',
   menu:'M4 6h16M4 12h16M4 18h16M8 9l-3 3 3 3',
   chart:'M5 19V10m5 9V5m5 14V8m5 11V3',
   device:'M7 3h10v18H7zM10 7h4M10 16h4M10 19h4',

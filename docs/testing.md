@@ -25,6 +25,7 @@ mvn -B -f backend/pom.xml test
 | 脚本 | 默认目标 |
 | --- | --- |
 | `frontend/e2e/verify-pages.cjs` | 管理端静态子路径预览 5207 |
+| `frontend/e2e/verify-energy-login.cjs` | Pages 5207 与 connected 5201；验证共享三维登录、拖拽、缩放、脉冲、登录退出和窄屏布局 |
 | `frontend/e2e/verify-avatar.cjs` | 静态演示5231；`AVATAR_QA_URL`可改地址，`AVATAR_ACCOUNT_MODE=true`使用隔离账号服务 |
 | `frontend/e2e/verify-dashboard-map.cjs` | 独立账号模式 5195 |
 | `frontend/e2e/verify-map-interactions.cjs` | 已配置高德的独立账号模式 |
@@ -40,6 +41,8 @@ mvn -B -f backend/pom.xml test
 验证已发布的真实地图时，设置 `PAGES_EXPECT_AMAP=true` 后运行 `frontend/e2e/verify-pages.cjs`，必须加载高德 SDK、显示五个站点标记且没有回退示意图。`verify-map-interactions.cjs` 通过 `ADMIN_MAP_BASE` 指向线上地址、`ADMIN_MAP_USER` / `ADMIN_MAP_PASSWORD` 使用演示账号，可进一步验证滚轮、拖动及搜索定位。
 
 浏览器测试使用隔离上下文，不操作用户日常浏览器状态。服务端接口失败不会被测试工具替换成成功的假响应。
+
+`verify-energy-login.cjs` 的 connected 部分使用明确的请求桩验证账号、密码和错误响应的界面契约，不作为真实后端联机验收；Pages 部分使用静态演示的实际登录实现，并验证 WebGL 不可用时仍能登录。可用 `ENERGY_PAGES_URL`、`ENERGY_CONNECTED_URL` 指向构建预览地址；提供 `ENERGY_ACCOUNT_URL` 时还会验证可选账号服务的重试按钮不会提交密码。
 
 头像验收覆盖图片上传与压缩、取消不生效、右上角同步、刷新保留、无效/超大文件拒绝、恢复默认及窄屏布局。独立账号测试使用临时数据库中的`avatar_test_admin`测试账号，不应指向日常账号库。
 
