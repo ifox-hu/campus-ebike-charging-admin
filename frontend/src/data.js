@@ -1,4 +1,3 @@
-export const referenceUrl = 'https://cloud.tencent.com/developer/article/2691703'
 export const navigation = [
  {id:'dashboard',label:'运营概览',icon:'chart'},
  {id:'stations',label:'站点管理',icon:'system'},
